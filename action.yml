@@ -28,9 +28,9 @@ runs:
       shell: bash
       run: docker login -u ${{ inputs.username }} -p ${{ inputs.password }} ${{ inputs.registry }}
     - name: Docker Build
-      run: docker build -t ${{ input.app-name }}:${{ input.version }} .
+      run: docker build -t ${{ inputs.app-name }}:${{ inputs.version }} .
     - name: Docker Tag
-      run: docker tag ${{ input.app-name }}:${{ input.version }} ${{ input.image }}:${{ input.version }}
+      run: docker tag ${{ inputs.app-name }}:${{ inputs.version }} ${{ inputs.image }}:${{ inputs.version }}
     - name: Docker Push
-      run: docker push ${{ input.image }}:${{ input.version }}
+      run: docker push ${{ inputs.image }}:${{ inputs.version }}
 
