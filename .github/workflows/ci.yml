@@ -25,4 +25,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           app-name: ${{ env.APP_NAME }}
           version: ${{ env.VERSION }}
-          image: ${{ eng.IMAGE }}
+          image: ${{ env.IMAGE }}
