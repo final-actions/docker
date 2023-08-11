@@ -10,10 +10,30 @@ inputs:
   password:
     description: 密码
     required: true
+  app-name:
+    description: 应用名称
+    required: true
+    default: ${{ APP_NAME }}
+  version:
+    description: 版本
+    required: true
+    default: ${{ VERSION }}
+  image:
+    description: 镜像
+    required: true
+    default: ${{ IMAGE }}
+
+
 runs:
   using: composite
   steps:
-    - name: 登录
+    - name: Docker Login
       shell: bash
-      run: sudo docker login -u ${{ inputs.username }} -p ${{ inputs.password }} ${{ inputs.registry }}
-        
+      run: docker login -u ${{ inputs.username }} -p ${{ inputs.password }} ${{ inputs.registry }}
+    - name: Docker Build
+      run: docker build -t ${{ input.app-name }}:${{ input.version }} .
+    - name: Docker Tag
+      run: docker tag ${{ input.app-name }}:${{ input.version }} ${{ input.image }}:${{ input.version }}
+    - name: Docker Push
+      run: docker push ${{ input.image }}:${{ input.version }}
+
