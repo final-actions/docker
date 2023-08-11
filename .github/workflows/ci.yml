@@ -17,6 +17,7 @@ jobs:
         uses: final-actions/set-up-env@main
         with:
           docker: true
+          docker-registry: ${{ secrets.DOCKER_REGISTRY }}
       - name: 检出存储库
         uses: actions/checkout@main
       - name: 构建Docker镜像
