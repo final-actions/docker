@@ -1,0 +1,19 @@
+name: docker
+description: Docker 工作流
+inputs:
+  registry:
+    description: Docker 注册地址
+    required: true
+  username:
+    description: 用户名
+    required: true
+  password:
+    description: 密码
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: 登录
+      shell: bash
+      run: sudo docker login -u ${{ inputs.username }} -p ${{ inputs.password }} ${{ inputs.registry }}
+        
