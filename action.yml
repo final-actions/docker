@@ -13,15 +13,15 @@ inputs:
   app-name:
     description: 应用名称
     required: true
-    default: ${{ $APP_NAME }}
+    default: ${{ env.APP_NAME }}
   version:
     description: 版本
     required: true
-    default: ${{ $VERSION }}
+    default: ${{ env.VERSION }}
   image:
     description: 镜像
     required: true
-    default: ${{ $IMAGE }}
+    default: ${{ env.IMAGE }}
 
 
 runs:
